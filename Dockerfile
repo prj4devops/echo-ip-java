@@ -1,6 +1,5 @@
-FROM openjdk:8
-LABEL description="Sample Java Application"
-ADD ./target/demo-0.0.1-SNAPSHOT.jar /tmp/demo.jar
+FROM openjdk:8 AS java
+LABEL description="Build environment for sample application"
 WORKDIR /tmp
 EXPOSE 18080
 ENTRYPOINT [ "java", "-jar", "demo.jar" ]
