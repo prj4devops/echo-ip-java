@@ -5,7 +5,7 @@ metadata:
   labels:
     app: devops-sample
 spec:
-# Pod 라벨 선택, Pod를 포함하는 레플리카셋에도 영향을 줌. Pod템플릿의 Label과 일치해야 함
+  replicas: 5
   selector:
     matchLabels:
       app: devops-sample 
