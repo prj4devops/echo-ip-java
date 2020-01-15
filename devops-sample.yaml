@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-sample01
+  labels:
+    app: devops-sample
+spec:
+# Pod 라벨 선택, Pod를 포함하는 레플리카셋에도 영향을 줌. Pod템플릿의 Label과 일치해야 함
+  selector:
+    matchLabels:
+      app: devops-sample 
+  template:
+    metadata:
+      labels:
+        app: devops-sample
+    spec:
+      containers:
+      - name: devops-sample-container
+        image: webfuel/devops-sample
+        ports:
+        - containerPort: 18080
