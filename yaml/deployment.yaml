@@ -6,7 +6,7 @@ metadata:
   labels:
     app: devops-sample
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: devops-sample 
