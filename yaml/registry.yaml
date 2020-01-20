@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: private-registry-volume
+  labels:
+    app: private-registry-volume
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: private-registry-volume-claim
+  labels:
+    app: private-registry-volume-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-registry
+spec:
+  selector:
+    matchLabels:
+      app: private-registry
+  template:
+    metadata:
+      labels:
+        app: private-registry
+    spec:
+      containers:
+      - name: private-registry
+        image: registry:2
+        env:
+          - name: REGISTRY_HTTP_ADDR
+            value: "0.0.0.0:443"
+        ports:
+            - containerPort: 5000
+            - containerPort: 443
+        volumeMounts:
+          - name: private-registry-storage
+            mountPath: /var/lib/registry
+      volumes:
+        - name: private-registry-storage
+          persistentVolumeClaim:
+            claimName: private-registry-volume-claim

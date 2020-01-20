@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: devops-sample-ingress
+spec:
+  rules:
+    - host: 10.105.198.140.xip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: devops-sample
+              servicePort: 18080

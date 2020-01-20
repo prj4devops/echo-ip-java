@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-sample01
+  labels:
+    app: devops-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-sample 
+  template:
+    metadata:
+      labels:
+        app: devops-sample
+    spec:
+      containers:
+      - name: devops-sample-container
+        image: webfuel/devops-sample
+        ports:
+        - containerPort: 18080

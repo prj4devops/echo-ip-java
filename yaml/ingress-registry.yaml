@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: private-registry-ingress
+spec:
+  tls:
+    - hosts: 
+        - my.registry
+      secretName: self-signed
+  rules:
+    - host: my.registry
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: private-registry-service
+              servicePort: 5000 
