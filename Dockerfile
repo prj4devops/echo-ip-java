@@ -1,7 +1,7 @@
 FROM openjdk:8 AS build
 LABEL description="Build environment for sample application"
 WORKDIR /tmp
-RUN git clone https://github.com/gnu-gnu/prj4devops.git
+RUN git clone https://github.com/prj4devops/simple-java-app.git
 WORKDIR /tmp/prj4devops
 RUN git checkout multi-stage
 RUN chmod u+x mvnw
