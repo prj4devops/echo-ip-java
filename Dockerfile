@@ -7,7 +7,7 @@ RUN git checkout multi-stage
 RUN chmod u+x mvnw
 RUN ./mvnw clean package
 
-FROM openjdk:8
+FROM gcr.io/distroless/java:8
 LABEL description="Running environment for sample application"
 COPY --from=build /tmp/simple-java-app/target/demo-0.0.1-SNAPSHOT.jar /tmp/demo.jar
 EXPOSE 18080
