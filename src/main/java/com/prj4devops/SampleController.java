@@ -12,7 +12,7 @@ public class SampleController {
 
     @RequestMapping("/")
     public String hello(HttpServletRequest request){
-        String result = "src: "+request.getRemoteAddr()+" / dest: "+request.getServerName()+"\n";
+        String result = "version1, src: "+request.getRemoteAddr()+" / dest: "+request.getServerName()+"\n";
         return result;
     }
 }
