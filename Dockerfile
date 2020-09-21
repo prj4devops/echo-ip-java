@@ -1,6 +1,6 @@
 FROM openjdk:8
 LABEL description="Echo IP Java Application"
-COPY ./target/demo-0.0.1-SNAPSHOT.jar /tmp/demo.jar
-WORKDIR /tmp
+COPY /opt/app-in-host.jar /opt/app-in-image.jar
+WORKDIR /opt
 EXPOSE 18080
-ENTRYPOINT [ "java", "-jar", "demo.jar" ]
+ENTRYPOINT [ "java", "-jar", "app-in-image.jar" ]
